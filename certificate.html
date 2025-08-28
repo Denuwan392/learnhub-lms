@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Certificate | LearnHub</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;600&display=swap">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+    .cert-container {
+      font-family: 'Libre Baskerville', serif;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #1a73e8, #4c8bf5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+    .certificate {
+      background: white;
+      border: 15px solid #1a73e8;
+      border-image: linear-gradient(to right, #1a73e8, #4c8bf5) 1;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    @media print {
+      .no-print, .no-print *
+      {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold text-blue-700">LearnHub</a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="dashboard.html" class="text-gray-700 hover:text-blue-700 transition font-medium">Dashboard</a>
+          <a href="courses.html" class="text-gray-700 hover:text-blue-700 transition font-medium">Courses</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <img src="https://placehold.co/32x32/1a73e8/ffffff?text=U" alt="User" class="w-8 h-8 rounded-full">
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-4">
+        <p class="text-sm text-gray-600">
+          <a href="dashboard.html" class="hover:text-blue-700">Dashboard</a> > 
+          <span class="text-gray-800">Certificate</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Page -->
+  <main class="py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-center mb-4">Certificate of Completion</h1>
+      <p class="text-center text-gray-600 mb-10">Congratulations on completing your course!</p>
+
+      <!-- Certificate -->
+      <div class="flex justify-center mb-10">
+        <div class="certificate p-12 max-w-4xl w-full mx-auto relative">
+          <!-- Decorative Corner Elements -->
+          <div class="absolute top-6 left-6 w-8 h-8 border-l-2 border-t-2 border-blue-600"></div>
+          <div class="absolute top-6 right-6 w-8 h-8 border-r-2 border-t-2 border-blue-600"></div>
+          <div class="absolute bottom-6 left-6 w-8 h-8 border-l-2 border-b-2 border-blue-600"></div>
+          <div class="absolute bottom-6 right-6 w-8 h-8 border-r-2 border-b-2 border-blue-600"></div>
+
+          <!-- Certificate Content -->
+          <div class="text-center cert-container">
+            <!-- Logo -->
+            <div class="mb-6">
+              <div class="text-3xl font-bold text-blue-700 mb-1">LearnHub</div>
+              <p class="text-gray-600 text-sm">Online Learning Platform</p>
+            </div>
+
+            <!-- Title -->
+            <h2 class="text-4xl font-bold mb-8">Certificate of Completion</h2>
+
+            <!-- Recipient Info -->
+            <p class="text-lg mb-4">This is to certify that</p>
+            <h3 class="text-5xl font-bold text-blue-700 mb-4">Alex Johnson</h3>
+            <p class="text-xl mb-8">has successfully completed the course</p>
+
+            <!-- Course Title -->
+            <h4 class="text-3xl font-bold mb-6">Complete Web Development Bootcamp</h4>
+
+            <!-- Details -->
+            <div class="flex justify-center space-x-12 text-sm mb-10">
+              <div>
+                <strong>Instructor:</strong> Dr. John Davis
+              </div>
+              <div>
+                <strong>Date:</strong> May 26, 2025
+              </div>
+              <div>
+                <strong>Verification:</strong> LH-8849201
+              </div>
+            </div>
+
+            <!-- Signature -->
+            <div class="flex justify-center space-x-16 mt-12">
+              <div class="text-center">
+                <img src="https://placehold.co/120x60/1a73e8/ffffff?text=Sig" alt="Instructor Signature" class="mx-auto mb-2">
+                <div class="border-t border-gray-400 pt-1 w-32 mx-auto"></div>
+                <p class="text-sm"><strong>Dr. John Davis</strong><br>Instructor</p>
+              </div>
+              <div class="text-center">
+                <img src="https://placehold.co/120x60/1a73e8/ffffff?text=Sig" alt="Director Signature" class="mx-auto mb-2">
+                <div class="border-t border-gray-400 pt-1 w-32 mx-auto"></div>
+                <p class="text-sm"><strong>Sarah Mitchell</strong><br>Academic Director</p>
+              </div>
+            </div>
+
+            <!-- QR Code -->
+            <div class="mt-10 flex justify-center">
+              <div class="bg-white p-3">
+                <img src="https://placehold.co/100x100/1a73e8/ffffff?text=QR" alt="Verification QR Code" class="w-20 h-20">
+              </div>
+              <p class="ml-4 text-xs text-gray-500 flex items-center">
+                Scan to verify certificate authenticity<br>
+                <a href="#" class="text-blue-600 hover:underline">learnhub.com/verify/LH-8849201</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="no-print text-center space-x-6">
+        <button id="download-pdf" class="btn-primary text-white px-8 py-3 rounded-lg font-semibold inline-flex items-center transition">
+          <i class="fas fa-download mr-2"></i> Download PDF
+        </button>
+        <button id="print-cert" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold inline-flex items-center transition">
+          <i class="fas fa-print mr-2"></i> Print Certificate
+        </button>
+        <button class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold inline-flex items-center transition">
+          <i class="fab fa-linkedin-in mr-2"></i> Share on LinkedIn
+        </button>
+      </div>
+
+      <div class="no-print mt-8 text-center text-sm text-gray-500">
+        <p>This certificate is awarded based on completion of all course requirements, including quizzes and final project.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-6 mt-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+      <p>&copy; 2025 LearnHub. All rights reserved. | 
+        <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> | 
+        <a href="#" class="text-blue-600 hover:underline">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Print Certificate
+    document.getElementById('print-cert').addEventListener('click', () => {
+      window.print();
+    });
+
+    // Download PDF (simulated)
+    document.getElementById('download-pdf').addEventListener('click', () => {
+      alert('Certificate downloaded as "LearnHub_Certificate_Alex_Johnson.pdf"');
+      // In real app: trigger PDF generation
+    });
+
+    // Share to LinkedIn (simulated)
+    document.querySelector('[class*="Share on LinkedIn"]').addEventListener('click', () => {
+      alert('Redirecting to LinkedIn to share your achievement!');
+      // In real app: open LinkedIn share URL
+    });
+
+    // Auto-focus certificate for printing
+    document.addEventListener('DOMContentLoaded', () => {
+      // You can integrate jsPDF or html2canvas here for real PDF export
+    });
+  </script>
+</body>
+</html>

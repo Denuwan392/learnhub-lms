@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Courses | LearnHub</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #1a73e8, #4c8bf5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+    .course-card {
+      transition: all 0.3s ease;
+    }
+    .course-card:hover {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+    .filter-btn.active {
+      background-color: #1a73e8;
+      color: white;
+    }
+    .filter-btn {
+      transition: all 0.2s ease;
+    }
+    .filter-btn:hover {
+      background-color: #e8f0fe;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold text-blue-700">LearnHub</a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-700 hover:text-blue-700 transition font-medium">Home</a>
+          <a href="#" class="text-blue-700 font-medium border-b-2 border-blue-700 pb-1">Courses</a>
+          <a href="#" class="text-gray-700 hover:text-blue-700 transition font-medium">Instructors</a>
+          <a href="#" class="text-gray-700 hover:text-blue-700 transition font-medium">About</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="text-gray-700 hover:text-blue-700 transition">Sign In</button>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition font-medium">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-4">
+        <p class="text-sm text-gray-600">
+          <a href="index.html" class="hover:text-blue-700">Home</a> > <span class="text-gray-800">Courses</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl font-bold text-gray-900">All Courses</h1>
+      <p class="text-gray-600 mt-2">Choose from 2,500+ online courses with new ones added weekly.</p>
+    </div>
+  </section>
+
+  <!-- Search & Filters -->
+  <section class="bg-gray-50 py-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Search Bar -->
+      <div class="max-w-3xl mx-auto mb-6">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search courses..." 
+            class="w-full px-5 py-3 pl-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+
+      <!-- Filters and Sort -->
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <!-- Category Filters -->
+        <div class="flex flex-wrap justify-center gap-2">
+          <button class="filter-btn active px-4 py-2 bg-blue-600 text-white rounded-lg font-medium" data-filter="all">All</button>
+          <button class="filter-btn px-4 py-2 bg-white text-gray-700 rounded-lg font-medium" data-filter="programming">Programming</button>
+          <button class="filter-btn px-4 py-2 bg-white text-gray-700 rounded-lg font-medium" data-filter="design">Design</button>
+          <button class="filter-btn px-4 py-2 bg-white text-gray-700 rounded-lg font-medium" data-filter="datascience">Data Science</button>
+          <button class="filter-btn px-4 py-2 bg-white text-gray-700 rounded-lg font-medium" data-filter="marketing">Marketing</button>
+          <button class="filter-btn px-4 py-2 bg-white text-gray-700 rounded-lg font-medium" data-filter="business">Business</button>
+        </div>
+
+        <!-- Sort -->
+        <div class="flex items-center space-x-2">
+          <label for="sort-select" class="text-gray-700 text-sm font-medium">Sort by:</label>
+          <select id="sort-select" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Grid -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="courses-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Courses will be dynamically inserted here -->
+      </div>
+      <div id="no-results" class="text-center py-10 text-gray-500 hidden">
+        <i class="fas fa-search text-4xl mb-2 opacity-50"></i>
+        <p>No courses match your search.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-blue-700 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Career?</h2>
+      <p class="text-blue-100 mb-8 max-w-2xl mx-auto">
+        Join over 1 million learners who have advanced their careers with LearnHub courses.
+      </p>
+      <a href="index.html" class="bg-white text-blue-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold inline-block transition">
+        Start Learning Today
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="text-xl font-bold mb-4">LearnHub</div>
+          <p class="text-gray-400 text-sm mb-4">Empowering learners worldwide with high-quality online education since 2015.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Courses</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="courses.html" class="hover:text-white transition block">All Courses</a></li>
+            <li><a href="courses.html?category=programming" class="hover:text-white transition block">Programming</a></li>
+            <li><a href="courses.html?category=datascience" class="hover:text-white transition block">Data Science</a></li>
+            <li><a href="courses.html?category=business" class="hover:text-white transition block">Business</a></li>
+            <li><a href="courses.html?category=design" class="hover:text-white transition block">Design</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Company</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white transition block">About Us</a></li>
+            <li><a href="#" class="hover:text-white transition block">Careers</a></li>
+            <li><a href="#" class="hover:text-white transition block">Blog</a></li>
+            <li><a href="#" class="hover:text-white transition block">Press</a></li>
+            <li><a href="#" class="hover:text-white transition block">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Support</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white transition block">Help Center</a></li>
+            <li><a href="#" class="hover:text-white transition block">FAQs</a></li>
+            <li><a href="#" class="hover:text-white transition block">Accessibility</a></li>
+            <li><a href="#" class="hover:text-white transition block">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white transition block">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 LearnHub. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock Course Data
+    const courses = [
+      {
+        id: 1,
+        title: "Complete Web Development Bootcamp",
+        category: "programming",
+        instructor: "Dr. John Davis",
+        rating: 4.8,
+        reviews: 3245,
+        price: 89.99,
+        image: "https://placehold.co/400x225/1a73e8/ffffff?text=Web+Development",
+        level: "Beginner",
+        duration: "68 hours"
+      },
+      {
+        id: 2,
+        title: "UI/UX Design: From Beginner to Pro",
+        category: "design",
+        instructor: "Sarah Mitchell",
+        rating: 4.9,
+        reviews: 2876,
+        price: 79.99,
+        image: "https://placehold.co/400x225/0d9f7c/ffffff?text=UI+Design",
+        level: "Intermediate",
+        duration: "45 hours"
+      },
+      {
+        id: 3,
+        title: "Data Science & Machine Learning",
+        category: "datascience",
+        instructor: "Alex Rodriguez",
+        rating: 4.7,
+        reviews: 1942,
+        price: 109.99,
+        image: "https://placehold.co/400x225/d946ef/ffffff?text=Data+Science",
+        level: "Advanced",
+        duration: "80 hours"
+      },
+      {
+        id: 4,
+        title: "Digital Marketing Masterclass",
+        category: "marketing",
+        instructor: "Linda Chen",
+        rating: 4.6,
+        reviews: 1650,
+        price: 69.99,
+        image: "https://placehold.co/400x225/f59e0b/ffffff?text=Marketing",
+        level: "Beginner",
+        duration: "35 hours"
+      },
+      {
+        id: 5,
+        title: "Business Strategy & Leadership",
+        category: "business",
+        instructor: "Michael O'Sullivan",
+        rating: 4.8,
+        reviews: 1103,
+        price: 99.99,
+        image: "https://placehold.co/400x225/ef4444/ffffff?text=Business",
+        level: "Intermediate",
+        duration: "50 hours"
+      },
+      {
+        id: 6,
+        title: "Python for Data Science",
+        category: "datascience",
+        instructor: "Dr. Emma Taylor",
+        rating: 4.9,
+        reviews: 2401,
+        price: 84.99,
+        image: "https://placehold.co/400x225/8b5cf6/ffffff?text=Python",
+        level: "Beginner",
+        duration: "40 hours"
+      },
+      {
+        id: 7,
+        title: "React Frontend Development",
+        category: "programming",
+        instructor: "Chris Johnson",
+        rating: 4.7,
+        reviews: 1788,
+        price: 74.99,
+        image: "https://placehold.co/400x225/06b6d4/ffffff?text=React",
+        level: "Intermediate",
+        duration: "30 hours"
+      },
+      {
+        id: 8,
+        title: "Figma for Beginners",
+        category: "design",
+        instructor: "Nina Patel",
+        rating: 4.8,
+        reviews: 956,
+        price: 59.99,
+        image: "https://placehold.co/400x225/0057e4/ffffff?text=Figma",
+        level: "Beginner",
+        duration: "20 hours"
+      }
+    ];
+
+    // DOM Elements
+    const coursesContainer = document.getElementById('courses-container');
+    const noResults = document.getElementById('no-results');
+    const searchInput = document.getElementById('search-input');
+    const sortSelect = document.getElementById('sort-select');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // Current filter state
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // Render courses based on filters
+    function renderCourses() {
+      let filteredCourses = courses.filter(course => {
+        const matchesCategory = currentFilter === 'all' || course.category === currentFilter;
+        const matchesSearch = course.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                              course.instructor.toLowerCase().includes(currentSearch.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sort courses
+      const sortValue = sortSelect.value;
+      if (sortValue === 'price-asc') {
+        filteredCourses.sort((a, b) => a.price - b.price);
+      } else if (sortValue === 'price-desc') {
+        filteredCourses.sort((a, b) => b.price - a.price);
+      } else if (sortValue === 'rating') {
+        filteredCourses.sort((a, b) => b.rating - a.rating);
+      } else {
+        filteredCourses.sort((a, b) => b.id - a.id); // newest first
+      }
+
+      // Display courses or no results
+      coursesContainer.innerHTML = '';
+      if (filteredCourses.length === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+        filteredCourses.forEach(course => {
+          const courseElement = `
+            <a href="course-detail.html?id=${course.id}" class="course-card bg-white rounded-lg overflow-hidden shadow transition block h-full flex flex-col">
+              <img src="${course.image}" alt="${course.title}" class="w-full h-48 object-cover">
+              <div class="p-6 flex-grow">
+                <div class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium mb-3">${course.category.charAt(0).toUpperCase() + course.category.slice(1)}</div>
+                <h3 class="text-xl font-bold mb-2">${course.title}</h3>
+                <p class="text-gray-600 mb-4 text-sm">By ${course.instructor}</p>
+                <div class="flex items-center mb-2 text-sm text-gray-500">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span>${course.rating} (${course.reviews})</span>
+                </div>
+                <div class="flex justify-between items-center mt-auto pt-4">
+                  <span class="text-lg font-bold text-blue-700">$${course.price}</span>
+                  <span class="text-xs text-gray-500">${course.duration} • ${course.level}</span>
+                </div>
+              </div>
+            </a>
+          `;
+          coursesContainer.innerHTML += courseElement;
+        });
+      }
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', () => {
+      currentSearch = searchInput.value;
+      renderCourses();
+    });
+
+    sortSelect.addEventListener('change', () => {
+      renderCourses();
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.getAttribute('data-filter');
+        renderCourses();
+      });
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set filter from URL query param (e.g. ?category=programming)
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('category');
+      if (category) {
+        const filterBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+        if (filterBtn) {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          filterBtn.classList.add('active');
+          currentFilter = category;
+        }
+      }
+      renderCourses();
+    });
+  </script>
+</body>
+</html>

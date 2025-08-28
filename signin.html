@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In | LearnHub</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #1a73e8, #4c8bf5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+    .form-container {
+      min-height: calc(100vh - 80px);
+    }
+    .auth-toggle {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold text-blue-700">LearnHub</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="text-gray-700 hover:text-blue-700 transition">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Auth Page -->
+  <main class="form-container flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-lg overflow-hidden">
+      
+      <!-- Tabs -->
+      <div class="flex border-b">
+        <button id="sign-in-tab" class="flex-1 py-4 text-center font-medium text-blue-700 border-b-2 border-blue-700 auth-toggle">Sign In</button>
+        <button id="sign-up-tab" class="flex-1 py-4 text-center font-medium text-gray-600 auth-toggle">Sign Up</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <div id="sign-in-form" class="p-6">
+        <h2 class="text-2xl font-bold text-center mb-6">Welcome Back</h2>
+        <p class="text-gray-600 text-center mb-6">Sign in to continue learning</p>
+
+        <!-- Google Sign-In -->
+        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg mb-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+          <i class="fab fa-google mr-3 text-red-500"></i>
+          Continue with Google
+        </button>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500">Or sign in with email</span>
+          </div>
+        </div>
+
+        <!-- Email & Password Form -->
+        <form id="signin-form" class="space-y-5">
+          <div>
+            <label for="signin-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input 
+              type="email" 
+              id="signin-email" 
+              required 
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="you@example.com"
+            />
+            <p class="text-red-500 text-xs mt-1 hidden" id="signin-email-error">Please enter a valid email.</p>
+          </div>
+
+          <div>
+            <label for="signin-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="signin-password" 
+                required 
+                minlength="6"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="••••••"
+              />
+              <button type="button" id="toggle-signin-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <p class="text-red-500 text-xs mt-1 hidden" id="signin-password-error">Password must be at least 6 characters.</p>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="flex items-center">
+              <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+              <span class="ml-2 text-sm text-gray-600">Remember me</span>
+            </label>
+            <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary text-white w-full py-3 rounded-lg font-semibold transition transform hover:shadow-lg">
+            Sign In
+          </button>
+        </form>
+
+        <p class="mt-6 text-center text-sm text-gray-600">
+          Don’t have an account? 
+          <button id="switch-to-signup" class="font-medium text-blue-600 hover:underline">Sign up</button>
+        </p>
+      </div>
+
+      <!-- Sign Up Form (Hidden by default) -->
+      <div id="sign-up-form" class="p-6 hidden">
+        <h2 class="text-2xl font-bold text-center mb-6">Create an Account</h2>
+        <p class="text-gray-600 text-center mb-6">Start your learning journey today</p>
+
+        <!-- Google Sign-Up -->
+        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg mb-4 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+          <i class="fab fa-google mr-3 text-red-500"></i>
+          Sign up with Google
+        </button>
+
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500">Or create an account</span>
+          </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <form id="signup-form" class="space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+              <input 
+                type="text" 
+                id="first-name" 
+                required 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+              <input 
+                type="text" 
+                id="last-name" 
+                required 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input 
+              type="email" 
+              id="signup-email" 
+              required 
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="you@example.com"
+            />
+            <p class="text-red-500 text-xs mt-1 hidden" id="signup-email-error">Please enter a valid email.</p>
+          </div>
+
+          <div>
+            <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="signup-password" 
+                required 
+                minlength="6"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="••••••"
+              />
+              <button type="button" id="toggle-signup-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <p class="text-gray-500 text-xs mt-1">Password must be at least 6 characters.</p>
+            <p class="text-red-500 text-xs mt-1 hidden" id="signup-password-error">Password must be at least 6 characters.</p>
+          </div>
+
+          <div>
+            <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="confirm-password" 
+                required 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="••••••"
+              />
+              <button type="button" id="toggle-confirm-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+            <p class="text-red-500 text-xs mt-1 hidden" id="confirm-password-error">Passwords do not match.</p>
+          </div>
+
+          <div class="flex items-center">
+            <input type="checkbox" id="terms" required class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+            <label for="terms" class="ml-2 text-sm text-gray-600">
+              I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary text-white w-full py-3 rounded-lg font-semibold transition transform hover:shadow-lg">
+            Create Account
+          </button>
+        </form>
+
+        <p class="mt-6 text-center text-sm text-gray-600">
+          Already have an account? 
+          <button id="switch-to-signin" class="font-medium text-blue-600 hover:underline">Sign in</button>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+      <p>&copy; 2025 LearnHub. All rights reserved. | 
+        <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> | 
+        <a href="#" class="text-blue-600 hover:underline">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Get DOM elements
+    const signInTab = document.getElementById('sign-in-tab');
+    const signUpTab = document.getElementById('sign-up-tab');
+    const signInForm = document.getElementById('sign-in-form');
+    const signUpForm = document.getElementById('sign-up-form');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToSignin = document.getElementById('switch-to-signin');
+
+    // Toggle between Sign In and Sign Up
+    function showSignIn() {
+      signInTab.classList.add('text-blue-700', 'border-b-2');
+      signInTab.classList.remove('text-gray-600');
+      signUpTab.classList.remove('text-blue-700', 'border-b-2');
+      signUpTab.classList.add('text-gray-600');
+      signInForm.classList.remove('hidden');
+      signUpForm.classList.add('hidden');
+    }
+
+    function showSignUp() {
+      signUpTab.classList.add('text-blue-700', 'border-b-2');
+      signUpTab.classList.remove('text-gray-600');
+      signInTab.classList.remove('text-blue-700', 'border-b-2');
+      signInTab.classList.add('text-gray-600');
+      signUpForm.classList.remove('hidden');
+      signInForm.classList.add('hidden');
+    }
+
+    signInTab.addEventListener('click', showSignIn);
+    signUpTab.addEventListener('click', showSignUp);
+    switchToSignup.addEventListener('click', showSignUp);
+    switchToSignin.addEventListener('click', showSignIn);
+
+    // Password Toggle
+    document.getElementById('toggle-signin-password').addEventListener('click', function() {
+      const input = document.getElementById('signin-password');
+      const icon = this.querySelector('i');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
+    });
+
+    document.getElementById('toggle-signup-password').addEventListener('click', function() {
+      const input = document.getElementById('signup-password');
+      const icon = this.querySelector('i');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
+    });
+
+    document.getElementById('toggle-confirm-password').addEventListener('click', function() {
+      const input = document.getElementById('confirm-password');
+      const icon = this.querySelector('i');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
+    });
+
+    // Form Validation
+    document.getElementById('signin-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      const email = document.getElementById('signin-email');
+      const password = document.getElementById('signin-password');
+      const emailError = document.getElementById('signin-email-error');
+      const passwordError = document.getElementById('signin-password-error');
+
+      // Reset errors
+      emailError.classList.add('hidden');
+      passwordError.classList.add('hidden');
+
+      if (!email.value.includes('@')) {
+        emailError.classList.remove('hidden');
+        valid = false;
+      }
+
+      if (password.value.length < 6) {
+        passwordError.classList.remove('hidden');
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Signed in successfully!');
+        // Redirect to dashboard
+        window.location.href = 'dashboard.html';
+      }
+    });
+
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      const email = document.getElementById('signup-email');
+      const password = document.getElementById('signup-password');
+      const confirm = document.getElementById('confirm-password');
+      const emailError = document.getElementById('signup-email-error');
+      const passwordError = document.getElementById('signup-password-error');
+      const confirmError = document.getElementById('confirm-password-error');
+
+      // Reset errors
+      emailError.classList.add('hidden');
+      passwordError.classList.add('hidden');
+      confirmError.classList.add('hidden');
+
+      if (!email.value.includes('@')) {
+        emailError.classList.remove('hidden');
+        valid = false;
+      }
+
+      if (password.value.length < 6) {
+        passwordError.classList.remove('hidden');
+        valid = false;
+      }
+
+      if (password.value !== confirm.value) {
+        confirmError.classList.remove('hidden');
+        valid = false;
+      }
+
+      if (valid) {
+        alert('Account created successfully!');
+        // Redirect to dashboard
+        window.location.href = 'dashboard.html';
+      }
+    });
+  </script>
+</body>
+</html>

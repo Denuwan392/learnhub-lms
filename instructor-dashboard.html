@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instructor Dashboard | LearnHub</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #1a73e8, #4c8bf5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+    .btn-outline {
+      border: 1px solid #1a73e8;
+      color: #1a73e8;
+    }
+    .btn-outline:hover {
+      background-color: #e8f0fe;
+    }
+    .stat-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+    .course-item {
+      transition: background-color 0.2s;
+    }
+    .course-item:hover {
+      background-color: #f8f9fa;
+    }
+    .progress {
+      height: 6px;
+    }
+    .menu-item.active {
+      background-color: #e8f0fe;
+      border-left: 4px solid #1a73e8;
+      padding-left: 15px !important;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold text-blue-700">LearnHub</a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="instructor-dashboard.html" class="text-blue-700 font-medium border-b-2 border-blue-700 pb-1">Instructor</a>
+          <a href="dashboard.html" class="text-gray-700 hover:text-blue-700 transition font-medium">Student</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100">
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="relative">
+            <img src="https://placehold.co/32x32/4c8bf5/ffffff?text=JD" alt="Instructor" class="w-8 h-8 rounded-full cursor-pointer" id="user-menu-btn">
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b">Profile</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b">Earnings Settings</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <h2 class="text-xl font-bold mb-6">Instructor Panel</h2>
+        <nav class="space-y-2">
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg active">Dashboard</a>
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg hover:bg-gray-100">My Courses</a>
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg hover:bg-gray-100">Create Course</a>
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg hover:bg-gray-100">Students</a>
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg hover:bg-gray-100">Earnings</a>
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg hover:bg-gray-100">Reviews</a>
+          <a href="#" class="menu-item block px-4 py-3 font-medium rounded-lg hover:bg-gray-100">Messages</a>
+        </nav>
+
+        <!-- Quick Actions -->
+        <div class="mt-8">
+          <h3 class="font-semibold mb-4">Quick Actions</h3>
+          <div class="space-y-2">
+            <button class="btn-outline w-full text-sm py-2 rounded-lg font-medium transition">
+              <i class="fas fa-plus mr-2"></i> New Course
+            </button>
+            <button class="btn-outline w-full text-sm py-2 rounded-lg font-medium transition">
+              <i class="fas fa-bullhorn mr-2"></i> Announce
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="lg:col-span-3 space-y-8">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 rounded-lg shadow-lg">
+          <h1 class="text-2xl font-bold">Welcome back, Dr. John!</h1>
+          <p class="opacity-90">Here's how your courses are performing this week.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Total Earnings -->
+          <div class="stat-card bg-white p-6 rounded-lg shadow-sm border text-center">
+            <div class="text-2xl font-bold text-blue-700">$4,820</div>
+            <div class="text-gray-600 text-sm">Total Earnings</div>
+            <div class="text-green-500 text-xs mt-1">+12% from last month</div>
+          </div>
+
+          <!-- This Month -->
+          <div class="stat-card bg-white p-6 rounded-lg shadow-sm border text-center">
+            <div class="text-2xl font-bold text-green-700">$745</div>
+            <div class="text-gray-600 text-sm">This Month</div>
+            <div class="text-green-500 text-xs mt-1">+8% from last month</div>
+          </div>
+
+          <!-- Students -->
+          <div class="stat-card bg-white p-6 rounded-lg shadow-sm border text-center">
+            <div class="text-2xl font-bold text-purple-700">1,240</div>
+            <div class="text-gray-600 text-sm">Total Students</div>
+            <div class="text-green-500 text-xs mt-1">+45 this week</div>
+          </div>
+
+          <!-- Courses -->
+          <div class="stat-card bg-white p-6 rounded-lg shadow-sm border text-center">
+            <div class="text-2xl font-bold text-orange-700">3</div>
+            <div class="text-gray-600 text-sm">Active Courses</div>
+            <div class="text-gray-500 text-xs mt-1">1 draft</div>
+          </div>
+
+        </div>
+
+        <!-- Recent Courses -->
+        <div class="bg-white p-6 rounded-lg shadow-sm border">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold">My Courses</h2>
+            <button class="btn-primary text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+              <i class="fas fa-plus mr-1"></i> Add Course
+            </button>
+          </div>
+
+          <div class="space-y-4" id="course-list">
+            <!-- Course items will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Performance Summary -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- Earnings Chart Placeholder -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border">
+            <h3 class="text-lg font-bold mb-4">Earnings Overview</h3>
+            <div class="bg-gray-100 h-48 rounded flex items-center justify-center">
+              <p class="text-gray-500">Chart: Monthly Earnings (simulated)</p>
+            </div>
+            <div class="mt-4 text-sm text-gray-600">
+              <strong>$745</strong> earned this month. Payout scheduled for June 5.
+            </div>
+          </div>
+
+          <!-- Student Feedback -->
+          <div class="bg-white p-6 rounded-lg shadow-sm border">
+            <h3 class="text-lg font-bold mb-4">Recent Feedback</h3>
+            <ul class="space-y-4" id="feedback-list">
+              <!-- Feedback items will be inserted here -->
+            </ul>
+            <div class="mt-4 text-center">
+              <a href="#" class="text-blue-600 text-sm hover:underline">View All Reviews</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Payout Info -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+          <div class="flex">
+            <i class="fas fa-info-circle text-yellow-600 mt-1 mr-3"></i>
+            <div>
+              <h4 class="font-semibold text-yellow-900">Next Payout: $745</h4>
+              <p class="text-yellow-800 text-sm mt-1">
+                Your earnings will be transferred to your linked account on <strong>June 5, 2025</strong>. 
+                <a href="#" class="underline">Update payment method</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-6 mt-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="text-gray-600 text-sm">
+          &copy; 2025 LearnHub. All rights reserved.
+        </div>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-500 hover:text-blue-700 text-sm">Privacy</a>
+          <a href="#" class="text-gray-500 hover:text-blue-700 text-sm">Terms</a>
+          <a href="#" class="text-gray-500 hover:text-blue-700 text-sm">Help</a>
+          <a href="#" class="text-gray-500 hover:text-blue-700 text-sm">Instructor Guide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock Data
+    const courses = [
+      {
+        id: 1,
+        title: "Complete Web Development Bootcamp",
+        students: 890,
+        rating: 4.8,
+        progress: 92,
+        earnings: 3200,
+        image: "https://placehold.co/80x60/1a73e8/ffffff?text=Web+Dev"
+      },
+      {
+        id: 2,
+        title: "JavaScript Essentials",
+        students: 240,
+        rating: 4.7,
+        progress: 78,
+        earnings: 980,
+        image: "https://placehold.co/80x60/f59e0b/ffffff?text=JS"
+      },
+      {
+        id: 3,
+        title: "React Frontend Development",
+        students: 110,
+        rating: 4.9,
+        progress: 65,
+        earnings: 640,
+        image: "https://placehold.co/80x60/06b6d4/ffffff?text=React"
+      }
+    ];
+
+    const feedback = [
+      {
+        student: "Emma T.",
+        course: "Web Development",
+        rating: 5,
+        comment: "Excellent course! Very well structured and practical examples.",
+        time: "2 days ago"
+      },
+      {
+        student: "James M.",
+        course: "JavaScript Essentials",
+        rating: 5,
+        comment: "The instructor explains complex topics so clearly. Highly recommend!",
+        time: "1 week ago"
+      },
+      {
+        student: "Sophia R.",
+        course: "React Frontend",
+        rating: 4,
+        comment: "Great content, but could use more real-world projects.",
+        time: "2 weeks ago"
+      }
+    ];
+
+    // DOM Elements
+    const courseList = document.getElementById('course-list');
+    const feedbackList = document.getElementById('feedback-list');
+
+    // Render Courses
+    function renderCourses() {
+      courseList.innerHTML = '';
+      courses.forEach(course => {
+        const courseEl = document.createElement('div');
+        courseEl.className = 'course-item p-4 border rounded-lg hover:bg-gray-50';
+        courseEl.innerHTML = `
+          <div class="flex">
+            <img src="${course.image}" alt="${course.title}" class="w-16 h-12 object-cover rounded">
+            <div class="ml-4 flex-grow">
+              <h3 class="font-semibold">${course.title}</h3>
+              <div class="flex flex-wrap gap-4 text-sm text-gray-600 mt-1">
+                <span>${course.students} students</span>
+                <span>${course.rating} <i class="fas fa-star text-yellow-400 text-xs"></i></span>
+                <span>$${course.earnings} earned</span>
+              </div>
+              <div class="mt-2">
+                <div class="flex justify-between text-xs text-gray-500 mb-1">
+                  <span>Completion Rate</span>
+                  <span>${course.progress}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-blue-600 h-2 rounded-full" style="width: ${course.progress}%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button class="text-blue-600 hover:text-blue-800 text-sm">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-600 hover:text-gray-800 text-sm">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        courseList.appendChild(courseEl);
+      });
+    }
+
+    // Render Feedback
+    function renderFeedback() {
+      feedbackList.innerHTML = '';
+      feedback.forEach(f => {
+        const feedbackEl = document.createElement('li');
+        feedbackEl.className = 'border-b pb-3 last:border-b-0 last:pb-0';
+        feedbackEl.innerHTML = `
+          <div class="flex items-center mb-1">
+            <div class="flex text-yellow-400 mr-2">
+              ${[...Array(5)].map((_, i) => 
+                i < f.rating ? '<i class="fas fa-star text-xs"></i>' : '<i class="far fa-star text-xs"></i>'
+              ).join('')}
+            </div>
+            <span class="text-xs text-gray-500">${f.time}</span>
+          </div>
+          <p class="text-gray-700 text-sm mb-1">${f.comment}</p>
+          <div class="text-xs text-gray-500">— ${f.student} in ${f.course}</div>
+        `;
+        feedbackList.appendChild(feedbackEl);
+      });
+    }
+
+    // User Menu Toggle
+    document.getElementById('user-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('user-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', (e) => {
+      const menu = document.getElementById('user-menu');
+      const btn = document.getElementById('user-menu-btn');
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    // Initialize Dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCourses();
+      renderFeedback();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Settings | LearnHub</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #1a73e8, #4c8bf5);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+    .btn-outline {
+      border: 1px solid #1a73e8;
+      color: #1a73e8;
+    }
+    .btn-outline:hover {
+      background-color: #e8f0fe;
+    }
+    .settings-section {
+      transition: box-shadow 0.2s;
+    }
+    .settings-section:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .avatar-preview {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold text-blue-700">LearnHub</a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="dashboard.html" class="text-gray-700 hover:text-blue-700 transition font-medium">Dashboard</a>
+          <a href="settings.html" class="text-blue-700 font-medium border-b-2 border-blue-700 pb-1">Settings</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100">
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="relative">
+            <img src="https://placehold.co/32x32/1a73e8/ffffff?text=U" alt="User" class="w-8 h-8 rounded-full cursor-pointer" id="user-menu-btn">
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border z-50">
+              <a href="settings.html" class="block px-4 py-2 hover:bg-gray-100 border-b">Settings</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-b">Your Profile</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-4">
+        <p class="text-sm text-gray-600">
+          <a href="dashboard.html" class="hover:text-blue-700">Dashboard</a> > 
+          <span class="text-gray-800">Settings</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Settings Page -->
+  <main class="py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold mb-8">Profile & Settings</h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sidebar Navigation -->
+        <div class="lg:col-span-1">
+          <div class="bg-white p-6 rounded-lg shadow-sm border sticky top-24">
+            <h2 class="text-lg font-bold mb-6">Settings</h2>
+            <nav class="space-y-2">
+              <a href="#profile" class="flex items-center px-3 py-2 text-blue-700 font-medium border-l-2 border-blue-700 bg-blue-50 rounded-l">
+                <i class="fas fa-user-circle mr-3"></i>
+                Profile
+              </a>
+              <a href="#password" class="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                <i class="fas fa-lock mr-3"></i>
+                Change Password
+              </a>
+              <a href="#notifications" class="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                <i class="fas fa-bell mr-3"></i>
+                Notifications
+              </a>
+              <a href="#privacy" class="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                <i class="fas fa-shield-alt mr-3"></i>
+                Privacy
+              </a>
+              <a href="#billing" class="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                <i class="fas fa-credit-card mr-3"></i>
+                Billing
+              </a>
+              <a href="#delete" class="flex items-center px-3 py-2 text-red-700 hover:bg-red-50 rounded">
+                <i class="fas fa-trash-alt mr-3"></i>
+                Delete Account
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:col-span-3 space-y-8">
+          
+          <!-- Profile Section -->
+          <section id="profile" class="settings-section bg-white p-6 rounded-lg shadow-sm border">
+            <h2 class="text-xl font-bold mb-6">Profile Information</h2>
+            
+            <form id="profile-form" class="space-y-6">
+              <!-- Avatar Upload -->
+              <div class="flex items-center space-x-6">
+                <div>
+                  <img src="https://placehold.co/100x100/1a73e8/ffffff?text=U" alt="Profile" class="avatar-preview rounded-full" id="avatar-preview">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Profile Photo</label>
+                  <input type="file" id="avatar-upload" accept="image/*" class="text-sm text-gray-500">
+                  <p class="text-xs text-gray-400 mt-1">JPG, PNG or GIF (max. 5MB)</p>
+                </div>
+              </div>
+
+              <!-- Name & Email -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                  <input 
+                    type="text" 
+                    id="first-name" 
+                    value="Alex"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                  <input 
+                    type="text" 
+                    id="last-name" 
+                    value="Johnson"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  value="alex.johnson@example.com"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio (Optional)</label>
+                <textarea 
+                  id="bio" 
+                  rows="3"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Tell us about yourself...">Frontend developer and lifelong learner passionate about web technologies and UI/UX design.</textarea>
+              </div>
+
+              <div class="flex space-x-4 pt-4">
+                <button type="submit" class="btn-primary text-white px-6 py-2 rounded-lg font-medium transition">
+                  Save Changes
+                </button>
+                <button type="button" class="btn-outline px-6 py-2 rounded-lg font-medium transition">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Change Password -->
+          <section id="password" class="settings-section bg-white p-6 rounded-lg shadow-sm border">
+            <h2 class="text-xl font-bold mb-6">Change Password</h2>
+            <form id="password-form" class="space-y-6">
+              <div>
+                <label for="current-password" class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                <input 
+                  type="password" 
+                  id="current-password" 
+                  required 
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label for="new-password" class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                <input 
+                  type="password" 
+                  id="new-password" 
+                  required 
+                  minlength="6"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <p class="text-gray-500 text-xs mt-1">Must be at least 6 characters long.</p>
+              </div>
+
+              <div>
+                <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                <input 
+                  type="password" 
+                  id="confirm-password" 
+                  required 
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <p id="password-error" class="text-red-500 text-xs mt-1 hidden">Passwords do not match.</p>
+              </div>
+
+              <div class="flex space-x-4 pt-4">
+                <button type="submit" class="btn-primary text-white px-6 py-2 rounded-lg font-medium transition">
+                  Update Password
+                </button>
+                <button type="button" class="btn-outline px-6 py-2 rounded-lg font-medium transition">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Notifications -->
+          <section id="notifications" class="settings-section bg-white p-6 rounded-lg shadow-sm border">
+            <h2 class="text-xl font-bold mb-6">Notification Preferences</h2>
+            <form class="space-y-5">
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Email me when I enroll in a new course</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Notify me about course recommendations</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Send me weekly learning digest</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Notify me about replies to my discussion posts</span>
+              </label>
+            </form>
+            <div class="mt-6 flex">
+              <button class="btn-primary text-white px-6 py-2 rounded-lg font-medium transition">
+                Save Preferences
+              </button>
+            </div>
+          </section>
+
+          <!-- Privacy -->
+          <section id="privacy" class="settings-section bg-white p-6 rounded-lg shadow-sm border">
+            <h2 class="text-xl font-bold mb-6">Privacy Settings</h2>
+            <form class="space-y-5">
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Make my profile public</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Show my progress on social feeds</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-3">Allow search engines to index my profile</span>
+              </label>
+            </form>
+            <div class="mt-6 flex">
+              <button class="btn-primary text-white px-6 py-2 rounded-lg font-medium transition">
+                Save Settings
+              </button>
+            </div>
+          </section>
+
+          <!-- Delete Account -->
+          <section id="delete" class="settings-section bg-white p-6 rounded-lg shadow-sm border">
+            <h2 class="text-xl font-bold mb-6 text-red-700">Delete Account</h2>
+            <p class="text-gray-600 mb-4">
+              Permanently delete your account and all associated data, including enrolled courses, progress, and notes.
+            </p>
+            <p class="text-sm text-gray-500 mb-6">
+              <strong>Note:</strong> This action cannot be undone. Please download your certificates and data before proceeding.
+            </p>
+            <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-medium transition">
+              Delete My Account
+            </button>
+          </section>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-6 mt-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+      <p>&copy; 2025 LearnHub. All rights reserved. | 
+        <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> | 
+        <a href="#" class="text-blue-600 hover:underline">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Handle avatar upload preview
+    document.getElementById('avatar-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('avatar-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Change Password Form Validation
+    document.getElementById('password-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const error = document.getElementById('password-error');
+
+      if (newPassword !== confirmPassword) {
+        error.classList.remove('hidden');
+      } else {
+        error.classList.add('hidden');
+        alert('Password updated successfully!');
+      }
+    });
+
+    // Save Profile Form
+    document.getElementById('profile-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Profile updated successfully!');
+    });
+
+    // Delete Account Confirmation
+    document.querySelector('[class*="Delete My Account"]').addEventListener('click', function() {
+      if (confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+        alert('Account deletion request submitted. You will be logged out.');
+        window.location.href = 'index.html';
+      }
+    });
+
+    // User Menu Toggle
+    document.getElementById('user-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('user-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', (e) => {
+      const menu = document.getElementById('user-menu');
+      const btn = document.getElementById('user-menu-btn');
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

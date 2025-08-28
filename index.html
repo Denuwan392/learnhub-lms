@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LearnHub | Professional Online Learning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #1a73e8, #4c8bf5);
+      box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+    }
+    .course-card:hover {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+    .progress-bar {
+      height: 6px;
+    }
+    .instructor-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+    .syllabus-item {
+      transition: background-color 0.2s;
+    }
+    .syllabus-item:hover {
+      background-color: #f8f9fa;
+    }
+    @media (max-width: 768px) {
+      .mobile-spacer {
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <div class="text-2xl font-bold text-blue-700">LearnHub</div>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#" class="text-gray-700 hover:text-blue-700 transition font-medium">Courses</a>
+          <a href="#" class="text-gray-700 hover:text-blue-700 transition font-medium">Catalog</a>
+          <a href="#" class="text-gray-700 hover:text-blue-700 transition font-medium">Instructors</a>
+          <a href="#" class="text-gray-700 hover:text-blue-700 transition font-medium">About</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="text-gray-700 hover:text-blue-700 transition">Sign In</button>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition font-medium">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+        Learn In-Demand Skills <br>Online from Experts
+      </h1>
+      <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+        Access high-quality courses in technology, business, design, and more. Learn at your own pace with lifetime access and certificates upon completion.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <button class="btn-primary text-white px-8 py-3 rounded-lg font-semibold text-lg transition transform hover:shadow-lg">
+          Browse Courses
+        </button>
+        <button class="border border-gray-300 hover:border-blue-500 text-gray-700 hover:text-blue-700 px-8 py-3 rounded-lg font-semibold transition">
+          How It Works
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Categories -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-center mb-12">Explore by Category</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow transition">
+          <div class="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-code text-blue-700"></i>
+          </div>
+          <h3 class="font-semibold">Programming</h3>
+          <p class="text-sm text-gray-600 mt-1">1,200+ courses</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow transition">
+          <div class="w-12 h-12 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-palette text-green-700"></i>
+          </div>
+          <h3 class="font-semibold">Design</h3>
+          <p class="text-sm text-gray-600 mt-1">850+ courses</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow transition">
+          <div class="w-12 h-12 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-chart-line text-purple-700"></i>
+          </div>
+          <h3 class="font-semibold">Business</h3>
+          <p class="text-sm text-gray-600 mt-1">720+ courses</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow transition">
+          <div class="w-12 h-12 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-bolt text-red-700"></i>
+          </div>
+          <h3 class="font-semibold">Data Science</h3>
+          <p class="text-sm text-gray-600 mt-1">680+ courses</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow transition">
+          <div class="w-12 h-12 mx-auto mb-4 bg-yellow-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-microphone-alt text-yellow-700"></i>
+          </div>
+          <h3 class="font-semibold">Marketing</h3>
+          <p class="text-sm text-gray-600 mt-1">540+ courses</p>
+        </div>
+        <div class="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow transition">
+          <div class="w-12 h-12 mx-auto mb-4 bg-indigo-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-graduation-cap text-indigo-700"></i>
+          </div>
+          <h3 class="font-semibold">Personal Development</h3>
+          <p class="text-sm text-gray-600 mt-1">420+ courses</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Courses -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-center mb-12">Popular Courses</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Course Card 1 -->
+        <div class="course-card bg-white rounded-lg overflow-hidden shadow transition">
+          <img src="https://placehold.co/400x225/1a73e8/ffffff?text=Web+Development" alt="Course" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <div class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium mb-3">Development</div>
+            <h3 class="text-xl font-bold mb-2">Complete Web Development Bootcamp</h3>
+            <p class="text-gray-600 mb-4 text-sm">Learn HTML, CSS, JavaScript, React, Node.js, and more from scratch.</p>
+            <div class="flex items-center mb-4">
+              <img src="https://placehold.co/40x40/4c8bf5/ffffff?text=JD" alt="Instructor" class="rounded-full mr-3 instructor-img">
+              <div>
+                <div class="font-medium">Dr. John Davis</div>
+                <div class="flex items-center text-sm text-gray-500">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span>4.8 (3,245 ratings)</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-blue-700">$89.99</span>
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium transition">
+                Enroll Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 2 -->
+        <div class="course-card bg-white rounded-lg overflow-hidden shadow transition">
+          <img src="https://placehold.co/400x225/0d9f7c/ffffff?text=UI+Design" alt="Course" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <div class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium mb-3">Design</div>
+            <h3 class="text-xl font-bold mb-2">UI/UX Design: From Beginner to Pro</h3>
+            <p class="text-gray-600 mb-4 text-sm">Master Figma, user research, prototyping, and design systems.</p>
+            <div class="flex items-center mb-4">
+              <img src="https://placehold.co/40x40/0d9f7c/ffffff?text=SM" alt="Instructor" class="rounded-full mr-3 instructor-img">
+              <div>
+                <div class="font-medium">Sarah Mitchell</div>
+                <div class="flex items-center text-sm text-gray-500">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span>4.9 (2,876 ratings)</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-green-700">$79.99</span>
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium transition">
+                Enroll Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Card 3 -->
+        <div class="course-card bg-white rounded-lg overflow-hidden shadow transition">
+          <img src="https://placehold.co/400x225/d946ef/ffffff?text=Data+Science" alt="Course" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <div class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-medium mb-3">Data Science</div>
+            <h3 class="text-xl font-bold mb-2">Data Science & Machine Learning</h3>
+            <p class="text-gray-600 mb-4 text-sm">Learn Python, Pandas, Scikit-learn, TensorFlow, and data visualization.</p>
+            <div class="flex items-center mb-4">
+              <img src="https://placehold.co/40x40/d946ef/ffffff?text=AR" alt="Instructor" class="rounded-full mr-3 instructor-img">
+              <div>
+                <div class="font-medium">Alex Rodriguez</div>
+                <div class="flex items-center text-sm text-gray-500">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span>4.7 (1,942 ratings)</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-2xl font-bold text-purple-700">$109.99</span>
+              <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-medium transition">
+                Enroll Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-center mb-12">What Our Students Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex mb-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 mb-6">"The web development course completely transformed my career. I went from knowing nothing to landing a junior developer job in just 6 months."</p>
+          <div class="flex items-center">
+            <img src="https://placehold.co/40x40/6b7280/ffffff?text=EM" alt="Student" class="rounded-full mr-3">
+            <div>
+              <div class="font-medium">Emma Thompson</div>
+              <div class="text-sm text-gray-500">Frontend Developer at TechCorp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex mb-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="text-gray-600 mb-6">"The UI/UX course was incredibly comprehensive. The projects I completed became the foundation of my design portfolio that helped me get hired."</p>
+          <div class="flex items-center">
+            <img src="https://placehold.co/40x40/6b7280/ffffff?text=JM" alt="Student" class="rounded-full mr-3">
+            <div>
+              <div class="font-medium">James Miller</div>
+              <div class="text-sm text-gray-500">Product Designer at DesignStudio</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex mb-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="text-gray-600 mb-6">"As a working professional, I appreciated the flexible schedule. The machine learning course content was up-to-date and the instructor was very responsive."</p>
+          <div class="flex items-center">
+            <img src="https://placehold.co/40x40/6b7280/ffffff?text=SR" alt="Student" class="rounded-full mr-3">
+            <div>
+              <div class="font-medium">Sophia Rodriguez</div>
+              <div class="text-sm text-gray-500">Data Analyst at FinTech Inc</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-xl font-semibold text-center mb-8">Trusted by learners at</h2>
+      <div class="flex flex-wrap justify-center items-center gap-8 opacity-70">
+        <div class="text-center">
+          <img src="https://placehold.co/120x40/1a73e8/ffffff?text=Google" alt="Google" class="h-10">
+        </div>
+        <div class="text-center">
+          <img src="https://placehold.co/120x40/0057e4/ffffff?text=Microsoft" alt="Microsoft" class="h-10">
+        </div>
+        <div class="text-center">
+          <img src="https://placehold.co/120x40/f47521/ffffff?text=IBM" alt="IBM" class="h-10">
+        </div>
+        <div class="text-center">
+          <img src="https://placehold.co/120x40/0066cc/ffffff?text=Meta" alt="Meta" class="h-10">
+        </div>
+        <div class="text-center">
+          <img src="https://placehold.co/120x40/ea4335/ffffff?text=Amazon" alt="Amazon" class="h-10">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="text-xl font-bold mb-4">LearnHub</div>
+          <p class="text-gray-400 text-sm mb-4">Empowering learners worldwide with high-quality online education since 2015.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Courses</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white transition">All Courses</a></li>
+            <li><a href="#" class="hover:text-white transition">Programming</a></li>
+            <li><a href="#" class="hover:text-white transition">Data Science</a></li>
+            <li><a href="#" class="hover:text-white transition">Business</a></li>
+            <li><a href="#" class="hover:text-white transition">Design</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Company</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white transition">About Us</a></li>
+            <li><a href="#" class="hover:text-white transition">Careers</a></li>
+            <li><a href="#" class="hover:text-white transition">Blog</a></li>
+            <li><a href="#" class="hover:text-white transition">Press</a></li>
+            <li><a href="#" class="hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Support</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+            <li><a href="#" class="hover:text-white transition">Instructor Support</a></li>
+            <li><a href="#" class="hover:text-white transition">Accessibility</a></li>
+            <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 LearnHub. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add subtle animation to course cards on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.course-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 200 + index * 100);
+      });
+    });
+  </script>
+</body>
+</html>
